@@ -337,7 +337,10 @@ async def advanced_face_swap(
             }
         )
         
+    except HTTPException:
+        raise
     except Exception as e:
+        logger.error(f"Face swap failed: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Face swap failed: {str(e)}")
 
 @api_router.post("/face/realtime-swap")
