@@ -394,7 +394,10 @@ async def realtime_face_swap(
             }
         )
         
+    except HTTPException:
+        raise
     except Exception as e:
+        logger.error(f"Real-time swap failed: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Real-time swap failed: {str(e)}")
 
 # Voice Processing Routes
