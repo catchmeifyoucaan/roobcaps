@@ -688,7 +688,11 @@ const App = () => {
                         <button
                           onClick={startAdvancedProcessing}
                           disabled={!sourceImage || !targetVideo || isProcessing}
-                          className="w-full mt-8 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 hover:from-purple-600 hover:via-pink-600 hover:to-blue-600 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg"
+                          className={`w-full mt-8 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform shadow-lg ${
+                            !sourceImage || !targetVideo || isProcessing
+                              ? 'bg-gray-500 cursor-not-allowed opacity-50'
+                              : 'bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 hover:from-purple-600 hover:via-pink-600 hover:to-blue-600 hover:scale-105'
+                          } text-white`}
                         >
                           {isProcessing ? (
                             <div className="flex items-center justify-center space-x-3">
