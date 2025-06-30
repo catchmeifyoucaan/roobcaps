@@ -276,7 +276,10 @@ async def extract_face_embeddings(image: UploadFile = File(...)):
             'model': 'facenet_ultra_v2'
         }
         
+    except HTTPException:
+        raise
     except Exception as e:
+        logger.error(f"Embedding extraction failed: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Embedding extraction failed: {str(e)}")
 
 @api_router.post("/face/advanced-swap")
