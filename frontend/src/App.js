@@ -1,6 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { 
+  FaceDetector, 
+  VoiceProcessor, 
+  RealTimeFaceSwapper, 
+  WebRTCManager, 
+  PerformanceMonitor,
+  CloudProcessingStatus 
+} from "./components";
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
