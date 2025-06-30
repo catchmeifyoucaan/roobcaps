@@ -921,8 +921,12 @@ const App = () => {
                         
                         <button 
                           onClick={initializeWebRTC}
-                          disabled={!realTimeMode}
-                          className="w-full mt-8 bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 hover:from-red-600 hover:via-pink-600 hover:to-purple-600 disabled:from-gray-500 disabled:to-gray-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg"
+                          disabled={!realTimeMode || !isStreaming}
+                          className={`w-full mt-8 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform shadow-lg ${
+                            !realTimeMode || !isStreaming
+                              ? 'bg-gray-500 cursor-not-allowed opacity-50'
+                              : 'bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 hover:from-red-600 hover:via-pink-600 hover:to-purple-600 hover:scale-105'
+                          } text-white`}
                         >
                           <span className="flex items-center justify-center space-x-2">
                             <span>🔴</span>
