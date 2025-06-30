@@ -973,6 +973,12 @@ const App = () => {
                             </div>
                           </div>
                           
+                          {/* Advanced Face Detection Stats */}
+                          <FaceDetector 
+                            onFaceDetected={(faces) => setFaceDetected(faces.length > 0)}
+                            isActive={isStreaming}
+                          />
+                          
                           {/* Output Video */}
                           <div>
                             <p className="text-sm text-gray-300 mb-3 font-semibold">AI Processed Output:</p>
@@ -1003,6 +1009,37 @@ const App = () => {
                               )}
                             </div>
                           </div>
+                          
+                          {/* Real-time Face Swapper Stats */}
+                          <RealTimeFaceSwapper
+                            sourceImage={sourceImage}
+                            isActive={realTimeMode}
+                            fullBodyMode={fullBodyMode}
+                            processingQuality="ultra"
+                            onSwapComplete={(frame, stats) => {
+                              console.log('Face swap completed:', stats);
+                            }}
+                          />
+                          
+                          {/* Voice Processing Stats */}
+                          {voiceMode && (
+                            <VoiceProcessor
+                              isActive={voiceMode}
+                              targetVoice={voiceTarget}
+                              onVoiceProcessed={(audio) => {
+                                console.log('Voice processed:', audio);
+                              }}
+                            />
+                          )}
+                          
+                          {/* Cloud Processing Status */}
+                          <CloudProcessingStatus
+                            isEnabled={cloudProcessing}
+                            onToggle={setCloudProcessing}
+                          />
+                          
+                          {/* Performance Monitor */}
+                          <PerformanceMonitor isActive={realTimeMode} />
                           
                           {/* Status Indicators */}
                           <div className="grid grid-cols-2 gap-4">
